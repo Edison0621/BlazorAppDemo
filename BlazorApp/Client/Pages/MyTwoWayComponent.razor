@@ -1,0 +1,19 @@
+﻿
+<div>
+    MyComponent CounterValue is @CounterValue
+</div>
+<button @onclick=UpdateCounterValue>Update</button>
+@code {
+
+    [Parameter]
+    public int CounterValue { get; set; }
+
+    [Parameter]
+    public EventCallback<int> CounterValueChanged { get; set; }
+
+    async Task UpdateCounterValue()
+    {
+        CounterValue++;
+        await CounterValueChanged.InvokeAsync(CounterValue);
+    }
+}

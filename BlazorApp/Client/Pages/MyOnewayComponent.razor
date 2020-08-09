@@ -1,0 +1,15 @@
+﻿
+<div>
+    MyComponent CounterValue is @CounterValue
+</div>
+<button @onclick=UpdateCounterValue>Update</button>
+@code {
+
+    [Parameter]
+    public int CounterValue { get; set; }
+
+    void UpdateCounterValue()
+    {
+        CounterValue++;
+    }
+}

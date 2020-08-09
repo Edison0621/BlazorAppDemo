@@ -1,0 +1,27 @@
+﻿@page "/RenderTreeTest"
+
+<h1>RenderTree Test</h1>
+
+<button @onclick=@Change>Blazor Change</button>
+<br>
+
+
+<ul>
+    @foreach (string item in sampleDataList)
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code {
+
+    List<string> sampleDataList = new List<string> { "Value1", "Value2", "Value3" };
+
+    void Change()
+    {
+        sampleDataList[0] = "Value4";
+        sampleDataList[1] = "Value5";
+        sampleDataList.Add("Value6");
+    }
+}
+

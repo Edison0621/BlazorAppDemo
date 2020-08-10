@@ -1,0 +1,54 @@
+﻿@page "/RenderTreeOfUsingKey"
+
+<h1>Using Key Attribute</h1>
+
+<button @onclick=@Change>Blazor Change</button>
+<br>
+
+<p>Without using key attribute</p>
+<ul>
+    @foreach (User user in userList)
+    {
+        <li>@user.Id, @user.UserName, @user.Address</li>
+    }
+</ul>
+
+<br />
+
+<p>Using key attribute</p>
+<ul>
+    @foreach (User user in userList)
+    {
+        <li @key=user>@user.Id, @user.UserName, @user.Address</li>
+    }
+</ul>
+
+@code {
+
+    [Parameter]
+    public List<User> userList { get; set; } = new List<User>
+    {
+        new User{Id = 1, UserName = "Xiao Ming", Address = "ShangHai"},
+        new User{Id = 2, UserName = "Xiao Qiang", Address = "BeiJing"},
+        new User{Id = 3, UserName = "Xiao Hong", Address = "ShenZhen"},
+        new User{Id = 4, UserName = "Xiao Li", Address = "GuangZhou"}
+    };
+
+
+    void Change()
+    {
+        User user = userList[0];
+        userList.RemoveAt(0);
+        userList.Add(user);
+    }
+
+    public sealed class User
+    {
+        public int Id { get; set; }
+
+        public string UserName { get; set; }
+
+        public string Address { get; set; }
+    }
+}
+
